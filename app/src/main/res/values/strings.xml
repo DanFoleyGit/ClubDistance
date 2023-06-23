@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ClubDistances</string>
+    <string name="modify_clubs">Modify Clubs</string>
+    <string name="error_message">error message</string>
+    <string name="yardage">Yardage</string>
+    <string name="add">add</string>
+    <string name="brand">brand</string>
+    <string name="loft">Loft</string>
+    <string name="clubbrand">ClubBrand</string>
+    <string name="yardageTitle">Yardage:</string>
+</resources>
