@@ -10,7 +10,7 @@ import com.multiplatform.clubdistances.homeScreen.model.Club
 
 class ClubAdapter : ListAdapter<Club, ClubAdapter.ViewHolder>(ClubDiffCallback()) {
 
-    interface OnItemClickListener{
+    interface ClubAdapterCallback{
         fun onItemClicked(position: Int)
     }
 

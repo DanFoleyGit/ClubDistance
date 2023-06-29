@@ -35,6 +35,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+    buildscript {
+        dependencies {
+            classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha01"
+        }
+    }
 }
 
 dependencies {
@@ -48,15 +53,19 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "androidx.room:room-runtime:2.5.1"
-    annotationProcessor 'androidx.room:room-compiler:2.5.1'
 
     // Room
     implementation 'androidx.room:room-ktx:2.5.2'
     kapt 'androidx.room:room-compiler:2.5.2'
+    implementation "androidx.room:room-runtime:2.5.1"
+    annotationProcessor 'androidx.room:room-compiler:2.5.1'
 
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
+//    apply plugin: "androidx.navigation.safeargs"
+
 }
