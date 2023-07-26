@@ -1,6 +1,5 @@
 package com.multiplatform.clubdistances.homeScreen
 
-import android.R
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,14 +10,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.multiplatform.clubdistances.ClubsApplication
+import com.multiplatform.clubdistances.R
 import com.multiplatform.clubdistances.databinding.HomeScreenFragmentBinding
 import com.multiplatform.clubdistances.homeScreen.adapters.ClubAdapter
 
-
-class HomeScreenFragment : Fragment() {
+class HomeScreenFragment : Fragment(), ClubAdapter.ClubAdapterCallback {
 
     private val viewModel: HomeScreenViewModel by viewModels() {
         HomeScreenViewModelFactory((activity?.application as ClubsApplication).repository)
@@ -47,7 +47,7 @@ class HomeScreenFragment : Fragment() {
         // club names drop down
         binding.selectClubDropDown.setAdapter(ArrayAdapter<String>(
             requireContext(),
-            R.layout.simple_dropdown_item_1line, viewModel.clubNames
+            android.R.layout.simple_dropdown_item_1line, viewModel.clubNames
         ))
 
         binding.selectClubDropDown.setOnTouchListener { v, event ->
@@ -94,6 +94,12 @@ class HomeScreenFragment : Fragment() {
 
     private fun toggleLayout() {
         viewModel.toggleShowFieldsLayout()
+    }
+
+    override fun onItemClicked(position: Int) {
+        findNavController().navigate(
+            HomeScreenFragmentDirections.actionHomeScreenFragmentToClubDetailsFragment()
+        )
     }
 
 }
