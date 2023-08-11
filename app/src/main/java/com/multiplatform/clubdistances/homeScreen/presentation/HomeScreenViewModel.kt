@@ -1,12 +1,10 @@
-package com.multiplatform.clubdistances.homeScreen
+package com.multiplatform.clubdistances.homeScreen.presentation
 
 import androidx.lifecycle.*
 import com.multiplatform.clubdistances.homeScreen.model.Club
 import com.multiplatform.clubdistances.homeScreen.model.ClubNames
 import com.multiplatform.clubdistances.homeScreen.repositories.ClubsRepository
 import com.multiplatform.clubdistances.homeScreen.repositories.GetClubsStaticRepository
-import com.multiplatform.clubdistances.homeScreen.useCases.AddClubUseCase
-import com.multiplatform.clubdistances.homeScreen.useCases.GetClubsStaticUseCase
 import kotlinx.coroutines.launch
 
 class HomeScreenViewModel(private val repository: ClubsRepository) : ViewModel() {

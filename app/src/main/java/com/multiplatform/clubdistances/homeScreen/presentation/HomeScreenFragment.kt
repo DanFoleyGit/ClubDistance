@@ -1,4 +1,4 @@
-package com.multiplatform.clubdistances.homeScreen
+package com.multiplatform.clubdistances.homeScreen.presentation
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.multiplatform.clubdistances.ClubsApplication
-import com.multiplatform.clubdistances.R
 import com.multiplatform.clubdistances.databinding.HomeScreenFragmentBinding
 import com.multiplatform.clubdistances.homeScreen.adapters.ClubAdapter
 
@@ -98,7 +97,7 @@ class HomeScreenFragment : Fragment(), ClubAdapter.ClubAdapterCallback {
 
     override fun onItemClicked(position: Int) {
         findNavController().navigate(
-            HomeScreenFragmentDirections.actionHomeScreenFragmentToClubDetailsFragment()
+            com.multiplatform.clubdistances.homeScreen.HomeScreenFragmentDirections.actionHomeScreenFragmentToClubDetailsFragment()
         )
     }
 

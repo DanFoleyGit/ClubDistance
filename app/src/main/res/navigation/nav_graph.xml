@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeScreenFragment">
+<!--    app:startDestination="@id/homeScreenFragment">-->
 
     <fragment
         android:id="@+id/homeScreenFragment"
-        android:name="com.multiplatform.clubdistances.homeScreen.HomeScreenFragment"
+        android:name="com.multiplatform.clubdistances.homeScreen.presentation.HomeScreenFragment"
         android:label="HomeScreenFragment">
         <action
             android:id="@+id/action_homeScreenFragment_to_clubDetailsFragment"
@@ -18,4 +19,9 @@
         android:id="@+id/clubDetailsFragment"
         android:name="com.multiplatform.clubdistances.ClubDetails.ClubDetailsFragment"
         android:label="ClubDetailsFragment"/>
+
+    <fragment
+        android:id="@+id/homeScreenComposeFragment"
+        android:name="com.multiplatform.clubdistances.homeScreen.HomeScreenComposeFragment"
+        android:label="homeScreenComposeFragment"/>
 </navigation>
