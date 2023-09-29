@@ -1,12 +1,11 @@
 package com.multiplatform.clubdistances
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.multiplatform.clubdistances.data.ClubRoomDatabase
 import com.multiplatform.clubdistances.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 navHostFragment.navController.popBackStack()
                 return true
             }
-            R.id.clubDetailsFragment -> {
+            R.id.updateClubsFragment -> {
                 navHostFragment.navController.popBackStack()
                 return true
             }

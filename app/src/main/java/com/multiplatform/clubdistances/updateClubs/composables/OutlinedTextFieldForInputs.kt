@@ -1,4 +1,4 @@
-package com.multiplatform.clubdistances.ClubDetails.composables
+package com.multiplatform.clubdistances.updateClubs.composables
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions

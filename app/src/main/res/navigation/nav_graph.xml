@@ -10,15 +10,15 @@
         android:name="com.multiplatform.clubdistances.homeScreen.presentation.HomeScreenFragment"
         android:label="HomeScreenFragment">
         <action
-            android:id="@+id/action_homeScreenFragment_to_clubDetailsFragment"
-            app:destination="@+id/clubDetailsFragment"
+            android:id="@+id/action_homeScreenFragment_to_updateClubsFragment"
+            app:destination="@+id/updateClubsFragment"
             app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
 
     <fragment
-        android:id="@+id/clubDetailsFragment"
-        android:name="com.multiplatform.clubdistances.ClubDetails.ClubDetailsFragment"
-        android:label="ClubDetailsFragment"/>
+        android:id="@+id/updateClubsFragment"
+        android:name="com.multiplatform.clubdistances.updateClubs.UpdateClubsFragment"
+        android:label="updateClubsFragment"/>
 
     <fragment
         android:id="@+id/homeScreenComposeFragment"

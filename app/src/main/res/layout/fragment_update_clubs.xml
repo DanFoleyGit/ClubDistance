@@ -3,11 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClubDetails.ClubDetailsFragment">
+    tools:context=".updateClubs.UpdateClubsFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="ClubDetails" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/update_clubs_compose_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
