@@ -20,8 +20,4 @@
         android:name="com.multiplatform.clubdistances.updateClubs.UpdateClubsFragment"
         android:label="updateClubsFragment"/>
 
-    <fragment
-        android:id="@+id/homeScreenComposeFragment"
-        android:name="com.multiplatform.clubdistances.homeScreen.HomeScreenComposeFragment"
-        android:label="homeScreenComposeFragment"/>
 </navigation>

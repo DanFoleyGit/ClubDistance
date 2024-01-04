@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Club class
 @Database(entities = arrayOf(Club::class), version = 1, exportSchema = false)
-public abstract class ClubRoomDatabase : RoomDatabase() {
+abstract class ClubRoomDatabase : RoomDatabase() {
 
-    abstract fun clubDao(): ClubDao
+    abstract fun getClubDao(): ClubDao
 
     private class ClubDatabaseCallback(
         private val scope: CoroutineScope
@@ -23,7 +23,7 @@ public abstract class ClubRoomDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let {database ->
                 scope.launch {
-                    populateDatabase(database.clubDao())
+                    populateDatabase(database.getClubDao())
                 }
             }
         }

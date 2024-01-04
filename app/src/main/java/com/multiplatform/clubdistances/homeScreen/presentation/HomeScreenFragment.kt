@@ -12,15 +12,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.multiplatform.clubdistances.ClubsApplication
 import com.multiplatform.clubdistances.databinding.HomeScreenFragmentBinding
 import com.multiplatform.clubdistances.homeScreen.adapters.ClubAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeScreenFragment : Fragment(), ClubAdapter.ClubAdapterCallback {
 
-    private val viewModel: HomeScreenViewModel by viewModels() {
-        HomeScreenViewModelFactory((activity?.application as ClubsApplication).repository)
-    }
+    private val viewModel: HomeScreenViewModel by viewModels()
+
     // Binding object instance with access to the views in the game_fragment.xml layout
     private lateinit var binding: HomeScreenFragmentBinding
     private lateinit var recyclerView: RecyclerView

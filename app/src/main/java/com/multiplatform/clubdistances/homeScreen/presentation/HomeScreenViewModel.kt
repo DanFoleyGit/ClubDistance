@@ -1,14 +1,23 @@
 package com.multiplatform.clubdistances.homeScreen.presentation
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.multiplatform.clubdistances.homeScreen.model.Club
 import com.multiplatform.clubdistances.homeScreen.model.ClubNames
-import com.multiplatform.clubdistances.homeScreen.repositories.ClubsRepository
-import com.multiplatform.clubdistances.homeScreen.repositories.GetClubsStaticRepository
+import com.multiplatform.clubdistances.homeScreen.useCases.AddClubUseCase
+import com.multiplatform.clubdistances.homeScreen.useCases.GetClubsStaticUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeScreenViewModel(private val repository: ClubsRepository) : ViewModel() {
-    // TODO
+@HiltViewModel
+class HomeScreenViewModel @Inject constructor(
+    private val addClubUseCase : AddClubUseCase,
+    private val getClubsStaticUseCase: GetClubsStaticUseCase
+) : ViewModel() {
     private val _isShowFieldsLayout = MutableLiveData(false)
     val isShowFieldsLayout: LiveData<Boolean>
         get() = _isShowFieldsLayout
@@ -22,17 +31,16 @@ class HomeScreenViewModel(private val repository: ClubsRepository) : ViewModel()
         get() = _displayErrorState
 
     var clubNames: List<String> = listOf()
-    val getClubsStaticRepository : GetClubsStaticRepository = GetClubsStaticRepository()
 
     // read club data as live data that is observed by the fragment
-    val allClubs: LiveData<List<Club>> = repository.allClubs.asLiveData()
+    val allClubs: LiveData<List<Club>> = getClubsStaticUseCase.invoke().asLiveData()
 
     init {
         populateClubNamesDropdown()
     }
 
     private fun insert(club: Club) = viewModelScope.launch {
-        repository.insert(club)
+        addClubUseCase.invoke(club)
     }
 
     private fun populateClubNamesDropdown() {
@@ -59,14 +67,4 @@ class HomeScreenViewModel(private val repository: ClubsRepository) : ViewModel()
         _displayErrorState.value = false
     }
 
-}
-
-class HomeScreenViewModelFactory(private val repository: ClubsRepository ) : ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeScreenViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return HomeScreenViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
 }
