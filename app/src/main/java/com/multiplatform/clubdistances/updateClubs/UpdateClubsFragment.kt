@@ -72,7 +72,7 @@ class UpdateClubsFragment : Fragment() {
                             Spacer(modifier = Modifier.height(32.dp))
                             OutlinedTextFieldForInputs(inputType = "Brand", hint = "", suffixText = "")
                             Spacer(modifier = Modifier.height(32.dp))
-                            OutlinedTextFieldForInputs(inputType = "Distance", hint = "Carry", suffixText = DISTANCE_UNIT)
+                            OutlinedTextFieldForInputs(inputType = "Distance", hint = "Carry", suffixText = viewModel.distanceUnits.value)
                             Spacer(modifier = Modifier.height(32.dp))
 
                         }

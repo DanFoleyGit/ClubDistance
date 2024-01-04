@@ -1,13 +1,16 @@
 package com.multiplatform.clubdistances.updateClubs
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.multiplatform.clubdistances.homeScreen.model.ClubNames
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class UpdateClubsViewModel : ViewModel() {
 
-    private var _clubNames = MutableLiveData(listOf<String>())
-    var clubNames: MutableLiveData<List<String>> = _clubNames
+    private var _clubNames = MutableStateFlow(listOf<String>())
+    var clubNames = _clubNames.asStateFlow()
+
+    val distanceUnits = MutableStateFlow("Yards")
 
 
     init {
@@ -15,6 +18,6 @@ class UpdateClubsViewModel : ViewModel() {
     }
 
     private fun populateClubNamesDropdown() {
-        clubNames.value = ClubNames().getClubNames()
+        _clubNames.value = ClubNames().getClubNames()
     }
 }
