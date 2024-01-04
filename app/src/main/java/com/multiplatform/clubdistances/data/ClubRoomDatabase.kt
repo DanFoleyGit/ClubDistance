@@ -5,16 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.multiplatform.clubdistances.homeScreen.dao.ClubDao
+import com.multiplatform.clubdistances.data.dao.ClubDao
 import com.multiplatform.clubdistances.homeScreen.model.Club
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // Annotates class to be a Room Database with a table (entity) of the Club class
 @Database(entities = arrayOf(Club::class), version = 1, exportSchema = false)
-public abstract class ClubRoomDatabase : RoomDatabase() {
+abstract class ClubRoomDatabase : RoomDatabase() {
 
-    abstract fun clubDao(): ClubDao
+    abstract fun getClubDao(): ClubDao
 
     private class ClubDatabaseCallback(
         private val scope: CoroutineScope
@@ -23,7 +23,7 @@ public abstract class ClubRoomDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let {database ->
                 scope.launch {
-                    populateDatabase(database.clubDao())
+                    populateDatabase(database.getClubDao())
                 }
             }
         }
