@@ -1,18 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".updateClubs.UpdateClubsFragment">
+    android:background="@color/white"
+    tools:context=".updateClubs.presentation.UpdateClubsFragment">
+
+    <AutoCompleteTextView
+        android:id="@+id/updateClubsSelectClubDropDown"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:hint="Club"
+        android:maxLength="2"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:background="@drawable/input_fields_background"
+        app:layout_constraintBottom_toTopOf="@+id/updateClubsClubLoftInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintVertical_bias="0.5">
+
+    </AutoCompleteTextView>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/updateClubsClubLoftInput"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:hint="@string/loft"
+        android:inputType="number"
+        android:maxLength="4"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:background="@drawable/input_fields_background"
+        app:layout_constraintBottom_toTopOf="@+id/updateClubsClubBrandInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateClubsSelectClubDropDown"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/updateClubsClubBrandInput"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:hint="@string/brand"
+        android:maxLength="35"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:background="@drawable/input_fields_background"
+        app:layout_constraintBottom_toTopOf="@+id/updateClubsClubYardageInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateClubsClubLoftInput"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/updateClubsClubYardageInput"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_margin="10dp"
+        android:hint="@string/yardage"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:background="@drawable/input_fields_background"
+        app:layout_constraintBottom_toTopOf="@+id/updateClubsAddClubButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateClubsClubBrandInput"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
+        android:id="@+id/updateClubsAddClubButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/add"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        app:layout_constraintBottom_toTopOf="@+id/updateClubsAddClubErrorMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateClubsClubYardageInput"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ClubDetails" />
+        android:id="@+id/updateClubsAddClubErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/error_message"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateClubsAddClubButton"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <androidx.compose.ui.platform.ComposeView
-        android:id="@+id/update_clubs_compose_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/updateClubsFragment"
-        android:name="com.multiplatform.clubdistances.updateClubs.UpdateClubsFragment"
+        android:name="com.multiplatform.clubdistances.updateClubs.presentation.UpdateClubsFragment"
         android:label="updateClubsFragment"/>
 
 </navigation>

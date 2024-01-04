@@ -1,7 +1,7 @@
 package com.multiplatform.clubdistances.homeScreen.repositories
-
 import com.multiplatform.clubdistances.homeScreen.model.Club
 
+// Not Currently used, only for testing a full list of ready clubs
 class GetClubsStaticRepository() {
 
     fun getClubList(): List<Club> {

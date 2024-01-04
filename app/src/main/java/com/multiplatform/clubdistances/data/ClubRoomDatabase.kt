@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.multiplatform.clubdistances.homeScreen.dao.ClubDao
+import com.multiplatform.clubdistances.data.dao.ClubDao
 import com.multiplatform.clubdistances.homeScreen.model.Club
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

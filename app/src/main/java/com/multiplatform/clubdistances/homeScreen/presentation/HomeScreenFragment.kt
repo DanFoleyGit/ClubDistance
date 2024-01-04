@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -42,56 +40,15 @@ class HomeScreenFragment : Fragment(), ClubAdapter.ClubAdapterCallback {
         clubAdapter = ClubAdapter()
         recyclerView.adapter = clubAdapter
 
-        // club names drop down
-        binding.selectClubDropDown.setAdapter(ArrayAdapter<String>(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line, viewModel.clubNames
-        ))
-
-        binding.selectClubDropDown.setOnTouchListener { v, event ->
-            binding.selectClubDropDown.showDropDown()
-            false
-        }
-
-        binding.modifyButton.setOnClickListener {toggleLayout()}
-        binding.addClubButton.setOnClickListener {addClub()}
-
         bind()
     }
 
     private fun bind() {
-        viewModel.isShowFieldsLayout.observe(viewLifecycleOwner){
-                isShowFieldsLayout -> binding.modifyClubsLayout.isVisible = isShowFieldsLayout
-            if (isShowFieldsLayout) {
-                binding.modifyButton.text = "Close Menu"
-            } else {
-                binding.modifyButton.text = "Modify Clubs"
-            }
-        }
-
-        viewModel.displayErrorState.observe(viewLifecycleOwner) {
-                displayErrorState ->
-            binding.addClubErrorMessage.text = viewModel.errorMessage.value
-            binding.addClubErrorMessage.isVisible = displayErrorState
-        }
         viewModel.allClubs.observe(viewLifecycleOwner, Observer { clubs ->
             clubs?.let{
                 clubAdapter.submitList(clubs)
             }
         })
-    }
-
-    private fun addClub() {
-        viewModel.addClubs(
-            binding.selectClubDropDown.text.toString(),
-            binding.ClubLoftInput.text.toString(),
-            binding.ClubBrandInput.text.toString(),
-            binding.ClubYardageInput.text.toString()
-        )
-    }
-
-    private fun toggleLayout() {
-        viewModel.toggleShowFieldsLayout()
     }
 
     override fun onItemClicked(position: Int) {

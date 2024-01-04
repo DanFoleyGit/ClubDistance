@@ -1,4 +1,4 @@
-package com.multiplatform.clubdistances.homeScreen.dao
+package com.multiplatform.clubdistances.data.dao
 
 import androidx.room.*
 import com.multiplatform.clubdistances.homeScreen.model.Club
