@@ -22,4 +22,7 @@ class ClubsRepositoryImpl(private val clubDao: ClubDao) : ClubsRepository {
         clubDao.insert(club)
     }
 
+    override suspend fun retrieveClubByName(clubName: String): Club {
+        return clubDao.retrieveClubByName(clubName)
+    }
 }

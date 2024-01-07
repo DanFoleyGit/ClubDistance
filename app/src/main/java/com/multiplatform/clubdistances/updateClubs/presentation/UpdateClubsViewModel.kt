@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.multiplatform.clubdistances.homeScreen.model.Club
 import com.multiplatform.clubdistances.homeScreen.useCases.AddClubUseCase
+import com.multiplatform.clubdistances.homeScreen.useCases.RetrieveClubByNameUseCase
 import com.multiplatform.clubdistances.updateClubs.useCases.GetClubTypesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UpdateClubsViewModel @Inject constructor(
     private val getClubTypesUseCase: GetClubTypesUseCase,
+    private val retrieveClubByNameUseCase: RetrieveClubByNameUseCase,
     private val addClubUseCase: AddClubUseCase
 ): ViewModel() {
 
@@ -44,7 +46,7 @@ class UpdateClubsViewModel @Inject constructor(
             } else {
                 insert(Club(name,loft,brand,distance.toInt()))
                 _actions.emit(Actions.ClearError)
-                _actions.emit(Actions.ClearInputs)
+                _actions.emit(Actions.ClearAllInputs)
                 // should give user feedback with Toast
                 // need to get a response from database if its been used before
             }
@@ -54,10 +56,29 @@ class UpdateClubsViewModel @Inject constructor(
     private fun insert(club: Club) = viewModelScope.launch {
         addClubUseCase.invoke(club)
     }
+
+    fun checkClubExists(userInput: String) {
+        viewModelScope.launch {
+            if (userInput.isNotEmpty()) {
+                val clubByInput = retrieveClubByNameUseCase.invoke(userInput)
+                if (clubByInput != null) {
+                    updateTextFieldsValues(clubByInput)
+                } else {
+                    _actions.emit(Actions.ClearLoftYardageBrandInputs)
+                }
+            }
+        }
+    }
+
+    private suspend fun updateTextFieldsValues(clubByInput: Club) {
+        _actions.emit(Actions.UpdateFieldsWithValues(clubByInput))
+    }
 }
 
 sealed class Actions {
     data class ShowError(val message: String) : Actions()
     object ClearError : Actions()
-    object ClearInputs : Actions()
+    object ClearAllInputs : Actions()
+    object ClearLoftYardageBrandInputs : Actions()
+    data class UpdateFieldsWithValues(val club: Club) : Actions()
 }

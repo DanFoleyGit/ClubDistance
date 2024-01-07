@@ -15,4 +15,8 @@ interface ClubDao {
 
     @Query("DELETE FROM club_table")
     suspend fun deleteAll()
+
+
+    @Query("SELECT * FROM club_table where club_name = :clubName")
+    suspend fun retrieveClubByName(clubName: String): Club
 }
